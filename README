@@ -15,14 +15,19 @@ Edge(Chinese:利刃) - Single Security Detection System
     - SQL Injection(SQLMap)
     - Scan Admin Manager
     - Scan Components
-    - Whois Information
+    - Whois
+    - Robots
     - Server Information(NMAP)
+    - DDOS
+    - Weak Password
 
 #### History
 
 v0.1
     - Add Port Scan
     - Add Login History
+    - Add Option
+    - Add System Information(SYSTEM/CPU/DISK/MEMORY)
 
 #### Contact
 

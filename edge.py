@@ -2,18 +2,18 @@
 
 """
 Edge - System Security Detection
-@author Feei(wufeifei@wufeifei.com)
-@date   2014.11.25
-@site   http://wufeifei.com/edge.html
+@author  Feei(wufeifei@wufeifei.com)
+@Version 0.1
+@site    http://wufeifei.com/edge.html
 """
 
+import re
 import socket
 import subprocess
 import sys
 import commands
 import getopt
 from datetime import datetime
-
 
 class Edge:
     def __init__(self, argv):
@@ -52,7 +52,11 @@ class Edge:
         if command == 'port':
             PortScan()
         elif command == 'login':
-            SystemDetection()
+            system = SystemDetection()
+            system.login_history()
+        elif command == 'sysinfo':
+            system = SystemDetection()
+            system.information()
         else:
             print usage
 
@@ -60,7 +64,7 @@ class SystemDetection:
     loginHistory = []
 
     def __init__(self):
-        self.login_history()
+        print 'System Detection'
 
     def login_history(self):
         a, b = commands.getstatusoutput('last')
@@ -74,7 +78,29 @@ class SystemDetection:
                 # 1NAME#2TTL#3IP#WEEK4#MONTH5#DAY6#STARTTIME7#-8#ENDTIME9#TOTALTIME10
                 l = line.split('^-^')
                 print l[0], l[2], l[4], '-' ,l[5] ,l[6] ,'-' ,l[8] , l[9]
-
+    
+    def information(self):
+        a, b = commands.getstatusoutput('free -g')
+        if a == 0:
+            # MEM 0:TOTAL 1:USED 2:FREE 3:SHARE 4:BUFFERS 5:CACHED
+            # SWAP 6:TOTAL 7:USED 8:FREE
+            memory = re.findall('(\d+)', b)[0]
+        a, b = commands.getstatusoutput('cat /etc/issue')
+        if a == 0:
+            system = b.split('\n')[0]
+        a ,b = commands.getstatusoutput('df -h --total')
+        if a == 0:
+            # -4:SIZE -3:USED -2:AVAIL -1:USE%
+            disk = re.findall('(\d+[G|%])', b)
+        a ,b = commands.getstatusoutput('lscpu')
+        if a == 0:
+            cpucore = re.findall('CPU\(s\):\s+(\d+)\s+', b)[0]
+            cpuid = re.findall('Vendor ID:\s+(\w+)\s+', b)[0]
+            cpumhz = re.findall('CPU\ MHz:\s+(\d+).', b)[0]
+        print 'System:', system
+        print 'Memory:', memory
+        print 'Disk:', disk[len(disk)-4], '/', disk[len(disk)-3], disk[len(disk)-1]
+        print 'CPU', cpuid, cpumhz, 'MHz', cpucore, 'Core'
 
 class PortScan:
     remoteServerIP = None
