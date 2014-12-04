@@ -99,8 +99,8 @@ class SystemDetection:
             cpumhz = re.findall('CPU\ MHz:\s+(\d+).', b)[0]
         print 'System:', system
         print 'Memory:', memory
-        print 'Disk:', disk[len(disk)-4], '/', disk[len(disk)-3], disk[len(disk)-1]
-        print 'CPU', cpuid, cpumhz, 'MHz', cpucore, 'Core'
+        print 'Disk:', disk[len(disk)-3], '/', disk[len(disk)-4], disk[len(disk)-1]
+        print 'CPU:', cpuid, cpumhz, 'MHz', cpucore, 'Core'
 
 class PortScan:
     remoteServerIP = None
@@ -141,6 +141,12 @@ class PortScan:
             print "Couldn't connect to server"
             sys.exit()
 
+class WebsiteDetection:
+    def __init__(self):
+        pass
+
+    def scan(website):
+        pass
 
 class Utility:
     def __init__(self):
