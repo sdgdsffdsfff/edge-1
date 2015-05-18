@@ -31,7 +31,3 @@ v0.1
     - Add Option
     - Add System Information(SYSTEM/CPU/DISK/MEMORY)
 
-#### Contact
-
-Author:  Feei(wufeifei@wufeifei.com)
-Website: http://wufeifei.com/edge.html
