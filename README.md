@@ -26,6 +26,7 @@ Edge(Chinese:利刃) - Single Security Detection System
 #### History
 
 v0.1
+
     - Add Port Scan
     - Add Login History
     - Add Option
