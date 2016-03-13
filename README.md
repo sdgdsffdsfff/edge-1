@@ -26,12 +26,9 @@ Edge(Chinese:利刃) - Single Security Detection System
 #### History
 
 v0.1
+
     - Add Port Scan
     - Add Login History
     - Add Option
     - Add System Information(SYSTEM/CPU/DISK/MEMORY)
 
-#### Contact
-
-Author:  Feei(wufeifei@wufeifei.com)
-Website: http://wufeifei.com/edge.html
